@@ -16,18 +16,18 @@
 	<script type="text/javascript">
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
-	var ballRadius = 10;
+	var ballRadius = 20;
 	var x = canvas.width/2;
 	var y = canvas.height-30;
 	var dx = 2;
 	var dy = -2;
-	var paddleHeight = 12;
-	var paddleWidth = 75;
+	var paddleHeight = 15;
+	var paddleWidth = 80;
 	var paddleX = (canvas.width-paddleWidth)/2;
 	var rightPressed = false;
 	var leftPressed = false;
-	var brickRowCount = 8;
-	var brickColumnCount = 7;
+	var brickRowCount = 15;
+	var brickColumnCount = 8;
 	var brickWidth = 85;
 	var brickHeight = 20;
 	var brickPadding = 10;
@@ -44,7 +44,59 @@
 	  }
 	}
 
-	document.addEventListener("touchstart", touchHandler);
+		var dragged;
+
+/* events fired on the draggable target */
+document.addEventListener("drag", function(event) {
+
+}, false);
+
+document.addEventListener("dragstart", function(event) {
+  // store a ref. on the dragged elem
+  dragged = event.target;
+  // make it half transparent
+  event.target.style.opacity = .5;
+}, false);
+
+document.addEventListener("dragend", function(event) {
+  // reset the transparency
+  event.target.style.opacity = "";
+}, false);
+
+/* events fired on the drop targets */
+document.addEventListener("dragover", function(event) {
+  // prevent default to allow drop
+  event.preventDefault();
+}, false);
+
+document.addEventListener("dragenter", function(event) {
+  // highlight potential drop target when the draggable element enters it
+  if (event.target.className == "dropzone") {
+    event.target.style.background = "purple";
+  }
+
+}, false);
+
+document.addEventListener("dragleave", function(event) {
+  // reset background of potential drop target when the draggable element leaves it
+  if (event.target.className == "dropzone") {
+    event.target.style.background = "";
+  }
+
+}, false);
+
+document.addEventListener("drop", function(event) {
+  // prevent default action (open as link for some elements)
+  event.preventDefault();
+  // move dragged elem to the selected drop target
+  if (event.target.className == "dropzone") {
+    event.target.style.background = "";
+    dragged.parentNode.removeChild( dragged );
+    event.target.appendChild( dragged );
+  }
+}, false);
+
+	/*document.addEventListener("touchstart", touchHandler);
 	document.addEventListener("touchmove", touchHandler);
 	
 	function touchHandler(e) {
@@ -54,7 +106,7 @@
         output.textContent = `Touch:  x: ${playerX}, y: ${playerY}`;
         e.preventDefault();
     }
-}
+}*/
 	/*document.addEventListener("keydown", keyDownHandler, false);
 	document.addEventListener("keyup", keyUpHandler, false);
 	document.addEventListener("mousemove", mouseMoveHandler, false);
