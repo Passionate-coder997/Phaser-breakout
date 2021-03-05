@@ -43,18 +43,18 @@
 		bricks[c][r] = { x: 0, y: 0, status: 1 };
 	  }
 	}
-
 	document.addEventListener("touchstart", touchHandler);
 	document.addEventListener("touchmove", touchHandler);
 	
 	function touchHandler(e) {
-	if(e.touches) {
-		playerX = e.touches[0].pageX - canvas.offsetLeft - playerWidth / 2;
-		playerY = e.touches[0].pageY - canvas.offsetTop - playerHeight / 2;
-		output.textContent = `Touch:  x: ${playerX}, y: ${playerY}`;
-        	e.preventDefault();
+    if(e.touches) {
+       	playerX = e.touches[0].pageX - canvas.offsetLeft - playerWidth / 2;
+       	playerY = e.touches[0].pageY - canvas.offsetTop - playerHeight / 2;
+       	output.textContent = `Touch:  x: ${playerX}, y: ${playerY}`;
+       	e.preventDefault();
     }
-}
+	}
+
 	/*document.addEventListener("keydown", keyDownHandler, false);
 	document.addEventListener("keyup", keyUpHandler, false);
 	document.addEventListener("mousemove", mouseMoveHandler, false);
