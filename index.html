@@ -11,7 +11,7 @@
 	
 </head>
 <body>
-	<canvas id="mycanvas" width="720" height="420"</canvas>
+	<canvas id="myCanvas" width="720" height="420"</canvas>
 	<script type="text/javascript">
 	var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
@@ -25,8 +25,8 @@ var paddleWidth = 75;
 var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
-var brickRowCount = 5;
-var brickColumnCount = 3;
+var brickRowCount = 8;
+var brickColumnCount = 6;
 var brickWidth = 75;
 var brickHeight = 20;
 var brickPadding = 10;
