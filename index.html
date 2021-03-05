@@ -11,11 +11,13 @@
 	
 </head>
 <body>
-	<canvas id="myCanvas" width="1020" height="750"</canvas>
+	<canvas id="myCanvas"> </canvas>
 	
 	<script type="text/javascript">
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
+	canvas.width=window.innerWidth;
+	canvas.height=window.innerHeight;
 	var ballRadius = 10;
 	var x = canvas.width/2;
 	var y = canvas.height-30;
@@ -47,21 +49,6 @@
 	document.addEventListener("keydown", keyDownHandler, false);
 	document.addEventListener("keyup", keyUpHandler, false);
 	document.addEventListener("mousemove", mouseMoveHandler, false);
-
-		$(function(){
-    resizeCanvas();
-});
-
-$(window).on('resize', function(){
-    resizeCanvas();
-});
-
-function resizeCanvas()
-{
-    var canvas = $('#canvas');
-    canvas.css("width", $(window).width());
-    canvas.css("height", $(window).height());
-}
 
 	function keyDownHandler(e) {
 		if(e.key == "Right" || e.key == "ArrowRight") {
