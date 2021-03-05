@@ -7,11 +7,16 @@
 		* {padding:0;
 			margin: 0;
 		}
+		#myCanvas{
+		resize:both;
+		overflow:auto;
+		}
 	</style>
 	
 </head>
 <body>
 	<canvas id="myCanvas" width="1020" height="750"</canvas>
+	
 	<script type="text/javascript">
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
