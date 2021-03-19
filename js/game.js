@@ -19,7 +19,7 @@ function preload() {
     game.scale.pageAlignHorizontally = true;
     game.scale.pageAlignVertically = true;
     game.stage.backgroundColor = '#eee';
-    game.load.image('paddle', 'img/paddle.png');
+    game.load.image('paddle', 'img/paddle.jpg');
     game.load.image('brick', 'img/brick.png');
     game.load.spritesheet('ball', 'img/wobble.png', 20, 20);
     game.load.spritesheet('button', 'img/button.png', 120, 40);
