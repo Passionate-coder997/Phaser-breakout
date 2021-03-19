@@ -1,4 +1,4 @@
-var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, null, { preload: preload, create: create, update: update });
+var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, null, { preload: preload, create: create, update: update });
 
 var ball;
 var paddle;
