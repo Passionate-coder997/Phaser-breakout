@@ -22,7 +22,7 @@ var mainState = {
             game.scale.setScreenSize(true);
         }
 
-        game.load.image('paddle', 'img/paddle.jpg');
+        game.load.image('paddle', 'img/paddle.png');
         game.load.image('ball', 'img/ball.png');
         game.load.image('brick', 'img/brick.png');
 
