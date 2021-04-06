@@ -55,16 +55,17 @@ var mainState = {
 
         //create all the bricks
         var brick;
-        for (var y = 0; y < 4; y++) {
-            for (var x = 0; x < 15; x++) {
+        for (var y = 0; y < 4; y++) { //columns
+            for (var x = 0; x < 15; x++) { //rows
                 brick = bricks.create(120 + x * 86, 100 + y * 52, 'brick');
                 brick.body.immovable = true;
             }
         }
 
         game.input.onDown.add(this.handleOnDown, game);
+
         game.input.onUp.add(this.handleOnUp, game);
-        
+
         lives = 3;
 
         var style = { font: "18px Arial", fill: "#000000", align: "center" };
@@ -91,18 +92,13 @@ var mainState = {
 
     handleOnDown: function() {
         //If the ball is on the paddle then shoot the ball else move the paddle left or right
-        
-        game.inputEnabled = true;
-        game.input.enableDrag();
-        this.x = this.game.event.onDragStart.add(onDragStart, this);
-        
         if (ballOnPaddle) {
             ballOnPaddle = false;
             ball.body.velocity.y = -250;
             ball.body.velocity.x = 100;
-        } else if (this.x < stageWidth / 2) {
+        } else if (game.input.x < stageWidth / 2) {
             paddle.body.velocity.x = -250;
-        } else if (this.x > stageWidth / 2) {
+        } else if (game.input.x > stageWidth / 2) {
             paddle.body.velocity.x = 250;
         }
     },
@@ -110,8 +106,7 @@ var mainState = {
     handleOnUp: function() {
         //stop the paddle from moving
         if (paddle.body.velocity.x != 0) {
-            paddle.events.onDragStop.add(onDragStop, this);
-            //paddle.body.velocity.x = 0;
+            paddle.body.velocity.x = 0;
         }
     },
 
