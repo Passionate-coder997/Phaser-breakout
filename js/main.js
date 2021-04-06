@@ -1,12 +1,3 @@
-
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
-
-function preload() {
-    this.load.image('ball', 'img/ball.png');
-    this.load.image('paddle', 'img/paddle.png');
-    this.load.image('brick', 'img/brick.png');
-}
-
 var ball;
 var paddle;
 var bricks;
@@ -20,7 +11,26 @@ var scoreText;
 var livesText;
 var introText;
 
-var s;
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
+
+function preload() {
+    // Do all the scaling
+    if (!game.device.desktop) {
+        game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+        game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+        game.scale.setScreenSize(true);
+    } else {
+        game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.scale.setScreenSize(true);
+    }
+
+    game.load.image('paddle', 'img/paddle.png');
+    game.load.image('ball', 'img/ball.png');
+    game.load.image('brick', 'img/brick.png');
+
+}
 
 function create() {
 
