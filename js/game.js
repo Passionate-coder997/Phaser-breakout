@@ -6,7 +6,7 @@ var livesText;
 var bricks;
 
 // Initialize Phaser and creates a game
-var game = new Phaser.Game(800, 540, Phaser.CANVAS, 'gameDiv');
+var game = new Phaser.Game(800, 640, Phaser.CANVAS, 'gameDiv');
 
 var mainState = {
 
@@ -62,10 +62,15 @@ var mainState = {
             }
         }
 
-        game.input.onDown.add(this.handleOnDown, game);
+        //game.input.onDown.add(this.handleOnDown, game);
+        //game.input.onUp.add(this.handleOnUp, game);
 
-        game.input.onUp.add(this.handleOnUp, game);
-
+        paddle.inputEnabled = true;
+        
+        paddle.input.enableDrag();
+        paddle.events.onDragStart.add(onDragStart, this);
+        paddle.events.onDragStop.add(onDragStop, this);
+        
         lives = 3;
 
         var style = { font: "18px Arial", fill: "#000000", align: "center" };
