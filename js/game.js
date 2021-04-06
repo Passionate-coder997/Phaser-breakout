@@ -103,14 +103,14 @@ var mainState = {
             game.events.onDragStart.add(onDragStart, this);
         }
 
-    var sonic = group.create(300, 200, 'sonic');
+    /*var sonic = group.create(300, 200, 'sonic');
 
     sonic.inputEnabled = true;
     sonic.input.enableDrag();
     sonic.events.onDragStart.add(onDragStart, this);
     sonic.events.onDragStop.add(onDragStop, this);
 
-    group.onChildInputDown.add(onDown, this);
+    group.onChildInputDown.add(onDown, this);*/
 
 },
 
