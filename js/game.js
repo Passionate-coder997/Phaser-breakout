@@ -115,13 +115,13 @@ var mainState = {
 
 },
 
-function onDown(sprite, pointer) {
+/*function onDown(sprite, pointer) {
 
     result = "Down " + sprite.key;
 
     console.log('down', sprite.key);
 
-},
+},*/
 
 function onDragStart(sprite, pointer) {
 
