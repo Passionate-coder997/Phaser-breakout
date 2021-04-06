@@ -3,8 +3,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: p
 
 function preload() {
 
-    game.load.atlas('breakout', 'assets/games/breakout/breakout.png', 'assets/games/breakout/breakout.json');
-    game.load.image('starfield', 'assets/misc/starfield.jpg');
+    //game.load.atlas('breakout', 'assets/games/breakout/breakout.png', 'assets/games/breakout/breakout.json');
+    //game.load.image('starfield', 'assets/misc/starfield.jpg');
 
 }
 
@@ -30,7 +30,7 @@ function create() {
     //  We check bounds collisions against all walls other than the bottom one
     game.physics.arcade.checkCollision.down = false;
 
-    s = game.add.tileSprite(0, 0, 800, 600, 'starfield');
+    //s = game.add.tileSprite(0, 0, 800, 600, 'starfield');
 
     bricks = game.add.group();
     bricks.enableBody = true;
@@ -42,13 +42,13 @@ function create() {
     {
         for (var x = 0; x < 15; x++)
         {
-            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'breakout', 'brick_' + (y+1) + '_1.png');
+            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'breakout', 'brick_' + (y+1) + 'brick.png');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
     }
 
-    paddle = game.add.sprite(game.world.centerX, 500, 'breakout', 'paddle_big.png');
+    paddle = game.add.sprite(game.world.centerX, 500, 'breakout', 'paddle.png');
     paddle.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
@@ -57,7 +57,7 @@ function create() {
     paddle.body.bounce.set(1);
     paddle.body.immovable = true;
 
-    ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'breakout', 'ball_1.png');
+    ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'breakout', 'ball.png');
     ball.anchor.set(0.5);
     ball.checkWorldBounds = true;
 
@@ -66,7 +66,7 @@ function create() {
     ball.body.collideWorldBounds = true;
     ball.body.bounce.set(1);
 
-    ball.animations.add('spin', [ 'ball_1.png', 'ball_2.png', 'ball_3.png', 'ball_4.png', 'ball_5.png' ], 50, true, false);
+    //ball.animations.add('spin', [ 'ball_1.png', 'ball_2.png', 'ball_3.png', 'ball_4.png', 'ball_5.png' ], 50, true, false);
 
     ball.events.onOutOfBounds.add(ballLost, this);
 
@@ -135,7 +135,7 @@ function ballLost () {
 
         ball.reset(paddle.body.x + 16, paddle.y - 16);
         
-        ball.animations.stop();
+        //ball.animations.stop();
     }
 
 }
@@ -163,14 +163,14 @@ function ballHitBrick (_ball, _brick) {
         //  New level starts
         score += 1000;
         scoreText.text = 'score: ' + score;
-        introText.text = '- Next Level -';
+        //introText.text = '- Next Level -';
 
         //  Let's move the ball back to the paddle
         ballOnPaddle = true;
         ball.body.velocity.set(0);
         ball.x = paddle.x + 16;
         ball.y = paddle.y - 16;
-        ball.animations.stop();
+        //ball.animations.stop();
 
         //  And bring the bricks back from the dead :)
         bricks.callAll('revive');
