@@ -64,12 +64,12 @@ var mainState = {
 
         //game.input.onDown.add(this.handleOnDown, game);
         //game.input.onUp.add(this.handleOnUp, game);
-
-        paddle.inputEnabled = true;
         
-        paddle.input.enableDrag();
-        paddle.events.onDragStart.add(onDragStart, this);
-        paddle.events.onDragStop.add(onDragStop, this);
+        game.inputEnabled = true;
+        
+        game.input.enableDrag();
+        game.events.onDragStart.add(onDragStart, this);
+        game.events.onDragStop.add(onDragStop, this);
         
         lives = 3;
 
