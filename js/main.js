@@ -189,5 +189,8 @@ function ballHitPaddle(_ball, _paddle) {
         //  Add a little random X to stop it bouncing straight up!
         _ball.body.velocity.x = 2 + Math.random() * 8;
     }
-
 }
+
+//Add and start the 'main' state to start the game
+game.state.add('main', mainState);
+game.state.start('main');
