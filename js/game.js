@@ -93,32 +93,18 @@ var mainState = {
         //If the ball is on the paddle then shoot the ball else move the paddle left or right
         
         game.inputEnabled = true;
-        this.x = this.game.input.x;
-                
+        game.input.enableDrag();
+        this.x = game.events.onDragStart.add(onDragStart, this);
+        
         if (ballOnPaddle) {
             ballOnPaddle = false;
             ball.body.velocity.y = -250;
             ball.body.velocity.x = 100;
-        } else if (this.x < stageWidth / 2)
-        {
-            this.x = stageWidth / 2;
-            
-            return
-        }
-
-         if (this.x > this.game.width - stageWidth / 2)
-         {
-             this.x = this.game.width - stageWidth / 2;
-         }
-            
-            
-            
-            
-            /*if (game.input.x < stageWidth / 2) {
+        } else if (this.x < stageWidth / 2) {
             paddle.body.velocity.x = -250;
-        } else if (game.input.x > stageWidth / 2) {
+        } else if (this.x > stageWidth / 2) {
             paddle.body.velocity.x = 250;
-        }*/
+        }
     },
 
     handleOnUp: function() {
