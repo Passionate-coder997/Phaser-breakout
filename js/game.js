@@ -6,7 +6,8 @@ var livesText;
 var bricks;
 
 // Initialize Phaser and creates a game
-var game = new Phaser.Game(800, 540, Phaser.CANVAS, 'gameDiv');
+var game = new Phaser.Game(800, 540, Phaser.CANVAS, 'gameDiv', { preload: preload, create: create, render: render });
+);
 
 var mainState = {
 
