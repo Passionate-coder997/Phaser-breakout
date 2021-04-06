@@ -94,7 +94,7 @@ var mainState = {
         
         game.inputEnabled = true;
         game.input.enableDrag();
-        this.x = game.events.onDragStart.add(onDragStart, this);
+        this.x = this.game.event.onDragStart.add(onDragStart, this);
         
         if (ballOnPaddle) {
             ballOnPaddle = false;
