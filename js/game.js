@@ -98,9 +98,9 @@ var mainState = {
             ball.body.velocity.x = 100;
         } else 
         {
-            paddle.inputEnabled = true;
-            paddle.input.enableDrag();
-            paddle.events.onDragStart.add(onDragStart, this);
+            game.inputEnabled = true;
+            game.input.enableDrag();
+            game.events.onDragStart.add(onDragStart, this);
         }
 
     var sonic = group.create(300, 200, 'sonic');
