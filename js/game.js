@@ -98,10 +98,9 @@ var mainState = {
             ball.body.velocity.x = 100;
         } else 
         {
-            atari.inputEnabled = true;
-            atari.input.enableDrag();
-            atari.events.onDragStart.add(onDragStart, this);
-            atari.events.onDragStop.add(onDragStop, this);
+            paddle.inputEnabled = true;
+            paddle.input.enableDrag();
+            paddle.events.onDragStart.add(onDragStart, this);
         }
 
     var sonic = group.create(300, 200, 'sonic');
@@ -113,7 +112,7 @@ var mainState = {
 
     group.onChildInputDown.add(onDown, this);
 
-}
+},
 
 function onDown(sprite, pointer) {
 
@@ -121,13 +120,13 @@ function onDown(sprite, pointer) {
 
     console.log('down', sprite.key);
 
-}
+},
 
 function onDragStart(sprite, pointer) {
 
     result = "Dragging " + sprite.key;
 
-}
+},
 
 function onDragStop(sprite, pointer) {
 
@@ -141,18 +140,19 @@ function onDragStop(sprite, pointer) {
         sprite.sendToBack();
     }
 
-}
+},
 /*if (game.input.x < stageWidth / 2) {
             paddle.body.velocity.x = -250;
         } else if (game.input.x > stageWidth / 2) {
             paddle.body.velocity.x = 250;
         }*/
-    },
+    //},
 
     handleOnUp: function() {
         //stop the paddle from moving
         if (paddle.body.velocity.x != 0) {
             paddle.body.velocity.x = 0;
+            paddle.events.onDragStop.add(onDragStop, this);
         }
     },
 
