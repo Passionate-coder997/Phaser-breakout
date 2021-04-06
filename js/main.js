@@ -42,13 +42,13 @@ function create() {
     {
         for (var x = 0; x < 15; x++)
         {
-            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'breakout', 'brick_' + (y+1) + 'brick.png');
+            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'breakout', 'brick_' + (y+1) + 'img/brick.png');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
     }
 
-    paddle = game.add.sprite(game.world.centerX, 500, 'breakout', 'paddle.png');
+    paddle = game.add.sprite(game.world.centerX, 500, 'breakout', 'img/paddle.png');
     paddle.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
@@ -57,7 +57,7 @@ function create() {
     paddle.body.bounce.set(1);
     paddle.body.immovable = true;
 
-    ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'breakout', 'ball.png');
+    ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'breakout', 'img/ball.png');
     ball.anchor.set(0.5);
     ball.checkWorldBounds = true;
 
