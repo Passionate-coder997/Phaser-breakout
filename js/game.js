@@ -92,19 +92,24 @@ var mainState = {
     handleOnDown: function() {
         //If the ball is on the paddle then shoot the ball else move the paddle left or right
         
-        paddle.inputEnabled = true;
+        game.inputEnabled = true;
+        this.x = this.game.input.x;
                 
         if (ballOnPaddle) {
             ballOnPaddle = false;
             ball.body.velocity.y = -250;
             ball.body.velocity.x = 100;
-        } else
+        } else if (this.x < stageWidth / 2)
         {
-            paddle.input.enableDrag();
-            paddle.events.onDragStart.add(onDragStart, this);
+            this.x = stageWidth / 2;
+            
+            return
         }
 
-            
+         if (this.x > this.game.width - stageWidth / 2)
+         {
+             this.x = this.game.width - stageWidth / 2;
+         }
             
             
             
