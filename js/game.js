@@ -62,14 +62,8 @@ var mainState = {
             }
         }
 
-        //game.input.onDown.add(this.handleOnDown, game);
-        //game.input.onUp.add(this.handleOnUp, game);
-        
-        game.inputEnabled = true;
-        
-        game.input.enableDrag();
-        game.events.onDragStart.add(onDragStart, this);
-        game.events.onDragStop.add(onDragStop, this);
+        game.input.onDown.add(this.handleOnDown, game);
+        game.input.onUp.add(this.handleOnUp, game);
         
         lives = 3;
 
@@ -97,6 +91,12 @@ var mainState = {
 
     handleOnDown: function() {
         //If the ball is on the paddle then shoot the ball else move the paddle left or right
+        
+        paddle.inputEnabled = true;
+        
+        paddle.input.enableDrag();
+        paddle.events.onDragStart.add(onDragStart, this);
+        
         if (ballOnPaddle) {
             ballOnPaddle = false;
             ball.body.velocity.y = -250;
@@ -111,7 +111,8 @@ var mainState = {
     handleOnUp: function() {
         //stop the paddle from moving
         if (paddle.body.velocity.x != 0) {
-            paddle.body.velocity.x = 0;
+            paddle.events.onDragStop.add(onDragStop, this);
+            //paddle.body.velocity.x = 0;
         }
     },
 
