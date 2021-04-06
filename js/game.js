@@ -6,8 +6,7 @@ var livesText;
 var bricks;
 
 // Initialize Phaser and creates a game
-var game = new Phaser.Game(800, 540, Phaser.CANVAS, 'gameDiv', { preload: preload, create: create, render: render });
-);
+var game = new Phaser.Game(800, 540, Phaser.CANVAS, 'gameDiv');
 
 var mainState = {
 
@@ -97,63 +96,17 @@ var mainState = {
             ballOnPaddle = false;
             ball.body.velocity.y = -250;
             ball.body.velocity.x = 100;
-        } else 
-        {
-            game.inputEnabled = true;
-            game.input.enableDrag();
-            game.events.onDragStart.add(onDragStart, this);
-        }
-
-    /*var sonic = group.create(300, 200, 'sonic');
-
-    sonic.inputEnabled = true;
-    sonic.input.enableDrag();
-    sonic.events.onDragStart.add(onDragStart, this);
-    sonic.events.onDragStop.add(onDragStop, this);
-
-    group.onChildInputDown.add(onDown, this);*/
-
-},
-
-/*function onDown(sprite, pointer) {
-
-    result = "Down " + sprite.key;
-
-    console.log('down', sprite.key);
-
-},*/
-
-function onDragStart(sprite, pointer) {
-
-    result = "Dragging " + sprite.key;
-
-},
-
-function onDragStop(sprite, pointer) {
-
-    result = sprite.key + " dropped at x:" + pointer.x + " y: " + pointer.y;
-
-    if (pointer.y > 400)
-    {
-        console.log('input disabled on', sprite.key);
-        sprite.input.enabled = false;
-
-        sprite.sendToBack();
-    }
-
-},
-/*if (game.input.x < stageWidth / 2) {
+        } else if (game.input.x < stageWidth / 2) {
             paddle.body.velocity.x = -250;
         } else if (game.input.x > stageWidth / 2) {
             paddle.body.velocity.x = 250;
-        }*/
-    //},
+        }
+    },
 
     handleOnUp: function() {
         //stop the paddle from moving
         if (paddle.body.velocity.x != 0) {
             paddle.body.velocity.x = 0;
-            paddle.events.onDragStop.add(onDragStop, this);
         }
     },
 
