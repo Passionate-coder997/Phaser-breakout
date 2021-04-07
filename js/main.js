@@ -61,7 +61,7 @@ function create() {
     paddle.body.immovable = true;
 
     //create the ball
-    ball = game.add.sprite(game.world.centerX, paddle.y - 16, 'ball');
+    ball = game.add.sprite(game.world.centerX, paddle.y - 13, 'ball');
     game.physics.enable(ball, Phaser.Physics.ARCADE);
     ball.body.bounce.set(1);
     ball.anchor.set(0.5);
@@ -75,7 +75,7 @@ function create() {
     ball.events.onOutOfBounds.add(ballLost, this);
 
     scoreText = game.add.text(32, 30, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
-    livesText = game.add.text(468, 30, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
+    livesText = game.add.text(768, 30, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
     introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
     introText.anchor.setTo(0.5, 0.5);
 
