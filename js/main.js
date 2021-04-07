@@ -7,8 +7,10 @@ var livesText;
 var ball;
 var paddle;
 var bricks;
+var width = screen.width;
+var height = screen.height;
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(width, height, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
 
 function preload() {
     // Do all the scaling
@@ -42,7 +44,7 @@ function create() {
     //create all bricks
     var brick;
 
-    for (var y = 0; y < 4; y++) {
+    for (var y = 0; y < width; y++) {
         for (var x = 0; x < 15; x++) {
             brick = bricks.create(80 + (x * 89), 100 + (y * 52), 'brick');
             brick.body.bounce.set(1);
@@ -74,8 +76,8 @@ function create() {
 
     ball.events.onOutOfBounds.add(ballLost, this);
 
-    scoreText = game.add.text(32, 30, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
-    livesText = game.add.text(768, 30, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
+    scoreText = game.add.text(width-32, height-30, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
+    livesText = game.add.text(width-768, height-30, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
     introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
     introText.anchor.setTo(0.5, 0.5);
 
