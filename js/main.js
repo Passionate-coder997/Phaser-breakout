@@ -45,14 +45,14 @@ function create() {
     var brick;
 
     for (var y = 0; y < width; y++) {
-        for (var x = 0; x < 15; x++) {
+        for (var x = 0; x < 8; x++) {
             brick = bricks.create(80 + (x * 89), 100 + (y * 52), 'brick');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
     }
 
-    paddle = game.add.sprite(width-height, 'paddle');
+    paddle = game.add.sprite(game.world.height, 'paddle');
     paddle.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
