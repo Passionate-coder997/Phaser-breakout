@@ -52,7 +52,7 @@ function create() {
         }
     }
 
-    paddle = game.add.sprite(game.word.height - 100, 'paddle');
+    paddle = game.add.sprite(game.word.y - 100, 'paddle');
     paddle.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
@@ -63,7 +63,7 @@ function create() {
     paddle.body.immovable = true;
 
     //create the ball
-    ball = game.add.sprite(game.world.centerX, paddle.y - 19, 'ball');
+    ball = game.add.sprite(paddle.centerX, paddle.y - 19, 'ball');
     game.physics.enable(ball, Phaser.Physics.ARCADE);
     ball.body.bounce.set(1);
     ball.anchor.set(0.5);
