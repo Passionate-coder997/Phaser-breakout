@@ -7,10 +7,8 @@ var livesText;
 var ball;
 var paddle;
 var bricks;
-var width = screen.width;
-var height = screen.height;
 
-var game = new Phaser.Game(width, height, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
 
 function preload() {
     // Do all the scaling
@@ -23,10 +21,10 @@ function preload() {
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.setScreenSize(true);
     }
-    
+
+    game.load.image('paddle', 'img/paddle.png');
     game.load.image('ball', 'img/ball.png');
     game.load.image('brick', 'img/brick.png');
-    game.load.image('paddle', 'img/paddle.png');
 
 }
 
@@ -44,15 +42,15 @@ function create() {
     //create all bricks
     var brick;
 
-    for (var y = 0; y < width; y++) {
-        for (var x = 0; x < 8; x++) {
-            brick = bricks.create(80 + (x * 89), 100 + (y * 52), 'brick');
+    for (var y = 0; y < 4; y++) {
+        for (var x = 0; x < 15; x++) {
+            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'brick');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
     }
 
-    paddle = game.add.sprite(y-100, 'paddle');
+    paddle = game.add.sprite(game.world.centerX, 500, 'paddle');
     paddle.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
@@ -63,7 +61,7 @@ function create() {
     paddle.body.immovable = true;
 
     //create the ball
-    ball = game.add.sprite(paddle.centerX, paddle.y - 19, 'ball');
+    ball = game.add.sprite(game.world.centerX, paddle.y - 19, 'ball');
     game.physics.enable(ball, Phaser.Physics.ARCADE);
     ball.body.bounce.set(1);
     ball.anchor.set(0.5);
@@ -76,8 +74,8 @@ function create() {
 
     ball.events.onOutOfBounds.add(ballLost, this);
 
-    scoreText = game.add.text(width-32, height-30, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
-    livesText = game.add.text(width-768, height-30, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
+    scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
+    livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
     introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
     introText.anchor.setTo(0.5, 0.5);
 
@@ -151,7 +149,7 @@ function ballHitBrick(_ball, _brick) {
 
     scoreText.text = 'score: ' + score;
 
-    //  Are they any bricks left?
+    //  Are there any bricks left?
     if (bricks.countLiving() == 0) {
         //  New level starts
         score += 1000;
@@ -179,9 +177,9 @@ function ballHitPaddle(_ball, _paddle) {
         //  Ball is on the left-hand side of the paddle
         diff = _paddle.x - _ball.x;
         _ball.body.velocity.x = (-10 * diff);
-    } else if (_ball.x > _paddle.x) {
+    } else if (ball.x > paddle.x) {
         //  Ball is on the right-hand side of the paddle
-        diff = _ball.x - _paddle.x;
+        diff = ball.x - paddle.x;
         _ball.body.velocity.x = (10 * diff);
     } else {
         //  Ball is perfectly in the middle
