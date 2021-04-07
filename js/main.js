@@ -52,7 +52,7 @@ function create() {
         }
     }
 
-    paddle = game.add.sprite(height.bottom, 'paddle');
+    paddle = game.add.sprite(y + height - offsetY, 'paddle');
     paddle.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
