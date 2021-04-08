@@ -44,7 +44,7 @@ function create() {
 
     for (var y = 0; y < 5; y++) {
         for (var x = 0; x < 15; x++) {
-            brick = bricks.create(2 + (x * 86), 85 + (y * 50), 'brick');
+            brick = bricks.create(2 + (x * 96), 85 + (y * 50), 'brick');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
@@ -61,7 +61,7 @@ function create() {
     paddle.body.immovable = true;
 
     //create the ball
-    ball = game.add.sprite(paddle.centerX, paddle.y - 35, 'ball');
+    ball = game.add.sprite(paddle.centerX, paddle.y - 40, 'ball');
     game.physics.enable(ball, Phaser.Physics.ARCADE);
     ball.body.bounce.set(1);
     ball.anchor.set(0.5);
