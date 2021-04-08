@@ -42,9 +42,9 @@ function create() {
     //create all bricks
     var brick;
 
-    for (var y = 0; y < 4; y++) {
+    for (var y = 0; y < 5; y++) {
         for (var x = 0; x < 15; x++) {
-            brick = bricks.create(20 + (x * 87), 20 + (y * 52), 'brick');
+            brick = bricks.create(35 + (x * 87), 35 + (y * 52), 'brick');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
@@ -74,8 +74,8 @@ function create() {
 
     ball.events.onOutOfBounds.add(ballLost, this);
 
-    scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
-    livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
+    scoreText = game.add.text(32, 30, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
+    livesText = game.add.text(680, 30, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
     introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
     introText.anchor.setTo(0.5, 0.5);
 
