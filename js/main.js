@@ -138,8 +138,6 @@ function gameOver() {
 
     introText.text = 'Game Over!';
     introText.visible = true;
-    Phaser.Key.reset();
-
 }
 
 function ballHitBrick(_ball, _brick) {
