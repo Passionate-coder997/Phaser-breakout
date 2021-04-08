@@ -61,7 +61,7 @@ function create() {
     paddle.body.immovable = true;
 
     //create the ball
-    ball = game.add.sprite(game.world.centerX, paddle.y - 19, 'ball');
+    ball = game.add.sprite(paddle.centerX, paddle.y - 19, 'ball');
     game.physics.enable(ball, Phaser.Physics.ARCADE);
     ball.body.bounce.set(1);
     ball.anchor.set(0.5);
