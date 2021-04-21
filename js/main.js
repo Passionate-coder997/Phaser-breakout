@@ -39,6 +39,7 @@ function create() {
     bricks = game.add.group();
     bricks.enableBody = true;
     bricks.physicsBodyType = Phaser.Physics.ARCADE;
+    //initializing audio
     hit = game.add.audio('hit');
 
     //create all bricks
@@ -111,7 +112,7 @@ function releaseBall() {
         ballOnPaddle = false;
         ball.body.velocity.y = -300;
         ball.body.velocity.x = -75;
-        ball.animations.play('spin');
+        //ball.animations.play('spin');
         introText.visible = false;
     }
 
@@ -140,6 +141,13 @@ function gameOver() {
 
     introText.text = 'Game Over!';
     introText.visible = true;
+    if(introText.text == 'Game Over!'):
+        restart();
+}
+
+function restart() {
+    if(game.input.onDown):
+        this.game.state.start('game');
 }
 
 function ballHitBrick(_ball, _brick) {
