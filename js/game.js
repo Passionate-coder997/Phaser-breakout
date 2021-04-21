@@ -25,14 +25,14 @@ var mainState = {
         game.load.image('paddle', 'img/paddle.png');
         game.load.image('ball', 'img/ball.png');
         game.load.image('brick', 'img/brick.png');
-        this.load.audio('hit', 'hit.wav');
+        game.load.audio('hit', 'hit.wav');
 
     },
 
     create: function() {
         game.stage.backgroundColor = '#71c5cf';
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        hit = this.sound.add("hit", {loop: false});
+        hit = game.add.audio("hit", {loop: false});
 
         //create the paddle
         paddle = game.add.sprite(game.world.centerX, 500, 'paddle');
