@@ -25,6 +25,7 @@ var mainState = {
         game.load.image('paddle', 'img/paddle.png');
         game.load.image('ball', 'img/ball.png');
         game.load.image('brick', 'img/brick.png');
+        this.load.audio('hit', 'hit.wav');
 
     },
 
