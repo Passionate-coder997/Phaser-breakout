@@ -141,13 +141,17 @@ function gameOver() {
 
     introText.text = 'Game Over!';
     introText.visible = true;
-    if(introText.text == 'Game Over!'):
+    if(introText.text == 'Game Over!')
+    {
         restart();
+    }
 }
 
 function restart() {
-    if(game.input.onDown):
+    if(game.input.onDown)
+    {
         this.game.state.start('game');
+    }
 }
 
 function ballHitBrick(_ball, _brick) {
