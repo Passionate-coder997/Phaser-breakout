@@ -27,6 +27,7 @@ function preload() {
     game.load.image('brick', 'img/brick.png');
     game.load.audio('hit', 'js/hit.wav');
     game.load.audio('game_over','js/game_over.wav');
+    game.load.audio('life_lost','js/over.mp3');
 
 }
 
@@ -44,6 +45,7 @@ function create() {
     //initializing audio
     hit = game.add.audio('hit');
     game_over = game.add.audio('game_over');
+    life_lost - game.add.audio('life_lost');
 
     //create all bricks
     var brick;
@@ -124,6 +126,8 @@ function releaseBall() {
 function ballLost() {
 
     lives--;
+    life_lost.play();
+
     livesText.text = 'lives: ' + lives;
 
     if (lives === 0) {
