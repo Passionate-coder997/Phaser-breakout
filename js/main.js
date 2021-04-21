@@ -25,6 +25,7 @@ function preload() {
     game.load.image('paddle', 'img/paddle.png');
     game.load.image('ball', 'img/ball.png');
     game.load.image('brick', 'img/brick.png');
+    game.load.audio('hit', 'hit.wav');
 
 }
 
@@ -38,6 +39,7 @@ function create() {
     bricks = game.add.group();
     bricks.enableBody = true;
     bricks.physicsBodyType = Phaser.Physics.ARCADE;
+    hit = game.add.audio('hit');
 
     //create all bricks
     var brick;
@@ -143,8 +145,8 @@ function gameOver() {
 function ballHitBrick(_ball, _brick) {
 
     _brick.kill();
-
     score += 10;
+    hit.play();
 
     scoreText.text = 'score: ' + score;
 
