@@ -8,7 +8,7 @@ var ball;
 var paddle;
 var bricks;
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'breakout', { preload: preload, create: create, update: update });
 
 function preload() {
     // Do all the scaling
@@ -147,9 +147,9 @@ function gameOver() {
     ball.body.velocity.setTo(0, 0);
     game_over.play();
 
-    introText.text = 'Game Over!';
+    introText.text = 'Game Over! Click to restart';
     introText.visible = true;
-    if(introText.text == 'Game Over!')
+    if(introText.text == 'Game Over! Click to restart')
     {
         restart();
     }
