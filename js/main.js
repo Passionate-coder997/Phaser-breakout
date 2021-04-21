@@ -26,6 +26,7 @@ function preload() {
     game.load.image('ball', 'img/ball.png');
     game.load.image('brick', 'img/brick.png');
     game.load.audio('hit', 'js/hit.wav');
+    game.load.audio('game_over','js/over.mp3');
 
 }
 
@@ -39,8 +40,10 @@ function create() {
     bricks = game.add.group();
     bricks.enableBody = true;
     bricks.physicsBodyType = Phaser.Physics.ARCADE;
+    
     //initializing audio
     hit = game.add.audio('hit');
+    game_over = game.add.audio('game_over');
 
     //create all bricks
     var brick;
@@ -138,6 +141,7 @@ function ballLost() {
 function gameOver() {
 
     ball.body.velocity.setTo(0, 0);
+    game_over.play();
 
     introText.text = 'Game Over!';
     introText.visible = true;
@@ -150,7 +154,17 @@ function gameOver() {
 function restart() {
     if(game.input.onDown)
     {
-        this.game.state.start('game');
+        score = 0;
+        lives = 3
+        //  Let's move the ball back to the paddle
+        ballOnPaddle = true;
+        ball.body.velocity.set(0);
+        ball.x = paddle.x + 16;
+        ball.y = paddle.y - 16;
+        //ball.animations.stop();
+
+        //  And bring the bricks back from the dead :)
+        bricks.callAll('revive');
     }
 }
 
