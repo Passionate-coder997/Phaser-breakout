@@ -25,7 +25,7 @@ function preload() {
     game.load.image('paddle', 'img/paddle.png');
     game.load.image('ball', 'img/ball.png');
     game.load.image('brick', 'img/brick.png');
-    game.load.audio('hit', 'hit.wav');
+    game.load.audio('hit', 'js/hit.wav');
 
 }
 
