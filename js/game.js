@@ -32,6 +32,7 @@ var mainState = {
     create: function() {
         game.stage.backgroundColor = '#71c5cf';
         game.physics.startSystem(Phaser.Physics.ARCADE);
+        hit = this.sound.add("hit", {loop: false});
 
         //create the paddle
         paddle = game.add.sprite(game.world.centerX, 500, 'paddle');
@@ -139,6 +140,7 @@ var mainState = {
     //This function is called when ball collides with a brick
     ballHitBrick: function(ball, brick) {
         brick.kill();
+        hit.play();
     }
 }
 
