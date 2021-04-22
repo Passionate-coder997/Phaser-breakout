@@ -46,7 +46,7 @@ function create() {
     //initializing audio
     hit = game.add.audio('hit');
     game_over = game.add.audio('game_over');
-    life_lost - game.add.audio('life_lost');
+    life_lost = game.add.audio('life_lost');
 
     //create all bricks
     var brick;
