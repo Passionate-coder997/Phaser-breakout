@@ -85,7 +85,7 @@ function create() {
 
     scoreText = game.add.text(32, 30, 'score: 0', { font: "20px Arial", fill: "#000000", align: "left" });
     livesText = game.add.text(680, 30, 'lives: 3', { font: "20px Arial", fill: "#000000", align: "left" });
-    introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
+    introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#A9A9A9", align: "center" });
     introText.anchor.setTo(0.5, 0.5);
 
     game.input.onDown.add(releaseBall, this);
@@ -148,9 +148,9 @@ function gameOver() {
     ball.body.velocity.setTo(0, 0);
     game_over.play();
 
-    introText.text = 'Game Over!\n Click to restart';
+    introText.text = "Game Over!\nClick to restart";
     introText.visible = true;
-    if(introText.text == 'Game Over!\n Click to restart')
+    if(introText.text == "Game Over!\n Click to restart")
     {
         restart();
     }
