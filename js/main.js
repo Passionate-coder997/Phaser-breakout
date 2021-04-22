@@ -8,7 +8,7 @@ var ball;
 var paddle;
 var bricks;
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO,backgroundColor: #31f0f0, 'breakout', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'breakout', { preload: preload, create: create, update: update });
 
 function preload() {
     // Do all the scaling
@@ -33,6 +33,7 @@ function preload() {
 
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
+    this.game.stage.backgroundColor= "#31f0f0";
 
     //  We check bounds collisions against all walls other than the bottom one
     game.physics.arcade.checkCollision.down = false;
