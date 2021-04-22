@@ -148,9 +148,9 @@ function gameOver() {
     ball.body.velocity.setTo(0, 0);
     game_over.play();
 
-    introText.text = 'Game Over!'\n' Click to restart';
+    introText.text = 'Game Over!\n Click to restart';
     introText.visible = true;
-    if(introText.text == 'Game Over!'\n' Click to restart')
+    if(introText.text == 'Game Over!\n Click to restart')
     {
         restart();
     }
