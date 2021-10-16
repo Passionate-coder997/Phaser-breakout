@@ -66,7 +66,7 @@ function create() {
 
     //create the paddle
     paddle.body.collideWorldBounds = true;
-    paddle.anchor.set(0.5, 0.5);
+    paddle.anchor.set(0.5, 0);
     paddle.body.immovable = true;
 
     //create the ball
