@@ -153,6 +153,7 @@ function gameOver() {
     if(introText.text == "Game Over!\n Click to restart")
     {
         restart();
+        location.reload();
     }
 }
 
