@@ -68,6 +68,7 @@ function create() {
     paddle.body.collideWorldBounds = true;
     paddle.anchor.set(0.5);
     paddle.body.immovable = true;
+    paddle.checkWorldBounds = true;
 
     //create the ball
     ball = game.add.sprite(game.world.centerX, paddle.y - 35, 'ball');
