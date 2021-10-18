@@ -74,7 +74,7 @@ function create() {
     ball = game.add.sprite(game.world.centerX, paddle.y - 35, 'ball');
     game.physics.enable(ball, Phaser.Physics.ARCADE);
     ball.body.bounce.set(1);
-    ball.anchor.set(0.5);
+    ball.anchor.set(0.2);
     ball.checkWorldBounds = true;
 
     ball.body.collideWorldBounds = true;
@@ -94,7 +94,7 @@ function create() {
 
 function update() {
     //  Fun, but a little sea-sick inducing :) Uncomment if you like!
-    // s.tilePosition.x += (game.input.speed.x / 2);
+     s.tilePosition.x += (game.input.speed.x / 2);
 
     paddle.x = game.input.x;
 
@@ -144,20 +144,6 @@ function ballLost() {
 
 }
 
-function gameOver() {
-
-    ball.body.velocity.setTo(0, 0);
-    game_over.play();
-
-    introText.text = "Game Over!\nClick to restart";
-    introText.visible = true;
-    if(introText.text == "Game Over!\n Click to restart")
-    {
-        restart();
-        location.reload();
-    }
-}
-
 function restart() {
     if(game.input.onDown)
     {
@@ -174,6 +160,21 @@ function restart() {
         bricks.callAll('revive');
     }
 }
+
+function gameOver() {
+
+    ball.body.velocity.setTo(0, 0);
+    game_over.play();
+
+    introText.text = "Game Over!\nClick to restart";
+    introText.visible = true;
+    if(introText.text == "Game Over!\n Click to restart")
+    {
+        restart();
+        location.reload();
+    }
+}
+
 
 function ballHitBrick(_ball, _brick) {
 
