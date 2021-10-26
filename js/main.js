@@ -99,7 +99,7 @@ function update() {
         paddle.x = game.width - 24;
     }
 
-    if (paddle.x > game.width) {
+    if (paddle.x > game.width || paddle.x < 5) {
         paddle.x = game.width - 2;
     }
     if (ballOnPaddle) {
