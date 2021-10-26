@@ -92,7 +92,6 @@ function update() {
     // s.tilePosition.x += (game.input.speed.x / 2);
 
     paddle.x = game.input.x;
-    paddle.x = canvas.width;
 
     if (paddle.x < 24) {
         paddle.x = 24;
@@ -100,6 +99,9 @@ function update() {
         paddle.x = game.width - 24;
     }
 
+    if (paddle.x > game.width) {
+        paddle.x = game.width - 2;
+    }
     if (ballOnPaddle) {
         ball.body.x = paddle.x;
     } else {
