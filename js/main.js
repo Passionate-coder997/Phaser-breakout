@@ -25,6 +25,8 @@ function preload() {
     game.load.image('paddle', 'img/paddle.png');
     game.load.image('ball', 'img/ball.png');
     game.load.image('brick', 'img/brick.png');
+    game.load.audio('hits', 'js/hit.wav');
+    game.load.audio('over', 'js/game_over.wav);
 
 }
 
@@ -144,7 +146,7 @@ function gameOver() {
 function ballHitBrick(_ball, _brick) {
 
     _brick.kill();
-
+    point = game.sound.play('hits');
     score += 10;
 
     scoreText.text = 'score: ' + score;
