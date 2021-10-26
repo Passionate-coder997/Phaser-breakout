@@ -47,7 +47,7 @@ function create() {
 
     for (var y = 0; y < 4; y++) {
         for (var x = 0; x < 10; x++) {
-            brick = bricks.create(170 + (x * 36), 120 + (y * 52), 'brick');
+            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'brick');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
@@ -76,8 +76,8 @@ function create() {
 
     //We don't want to check for out of worldBound when the ball goes down the screen
     game.physics.arcade.checkCollision.down = false;
-    /*game.physics.arcade.checkCollision.left = true;
-    game.physics.arcade.checkCollision.left = true;*/
+    game.physics.arcade.checkCollision.left = true;
+    game.physics.arcade.checkCollision.right = true;
 
     ball.events.onOutOfBounds.add(ballLost, this);
 
