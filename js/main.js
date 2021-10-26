@@ -60,7 +60,6 @@ function create() {
 
     //create the paddle
     paddle.body.collideWorldBounds = true;
-    paddle.checkWorldBounds = true;
     paddle.anchor.set(0.5, 0.5);
     paddle.body.immovable = true;
 
@@ -75,6 +74,8 @@ function create() {
 
     //We don't want to check for out of worldBound when the ball goes down the screen
     game.physics.arcade.checkCollision.down = false;
+    /*game.physics.arcade.checkCollision.left = true;
+    game.physics.arcade.checkCollision.left = true;*/
 
     ball.events.onOutOfBounds.add(ballLost, this);
 
@@ -162,7 +163,7 @@ function ballHitBrick(_ball, _brick) {
         /*//  New level starts
         score += 10;
         scoreText.text = 'score: ' + score;
-        //introText.text = '- Next Level -';*/
+        //introText.text = '- Next Level -';
 
         //  Let's move the ball back to the paddle
         ballOnPaddle = true;
@@ -172,7 +173,8 @@ function ballHitBrick(_ball, _brick) {
         //ball.animations.stop();
 
         //  And bring the bricks back from the dead :)
-        bricks.callAll('revive');
+        bricks.callAll('revive');*/
+        winAlert = game.add.text(game.world.centerX, game.world.centerY, 'Congratulations, You won!!', { font: "20px Arial", fill: "#ffffff", align: "centre" });
     }
 
 }
