@@ -26,7 +26,7 @@ function preload() {
     game.load.image('ball', 'img/ball.png');
     game.load.image('brick', 'img/brick.png');
     game.load.audio('hits', 'js/hit.wav');
-    game.load.audio('over', 'js/game_over.wav);
+    game.load.audio('over', 'js/game_over.wav');
 
 }
 
@@ -120,6 +120,7 @@ function releaseBall() {
 function ballLost() {
 
     lives--;
+    life = game.sound.play('over');
     livesText.text = 'lives: ' + lives;
 
     if (lives === 0) {
@@ -140,6 +141,7 @@ function gameOver() {
 
     introText.text = 'Game Over!';
     introText.visible = true;
+    life = game.sound.play('over');
 
 }
 
