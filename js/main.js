@@ -143,8 +143,10 @@ function gameOver() {
     introText.text = 'Game Over!';
     introText.visible = true;
     life = game.sound.play('over');
-    introText.visible = false;
-    document.location.reload()
+    if game.input.onDown {
+        introText.visible = false;
+        document.location.reload();
+    }
 
 }
 
