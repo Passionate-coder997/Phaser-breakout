@@ -60,6 +60,7 @@ function create() {
 
     //create the paddle
     paddle.body.collideWorldBounds = true;
+    paddle.checkWorldBounds = true;
     paddle.anchor.set(0.5, 0.5);
     paddle.body.immovable = true;
 
@@ -90,6 +91,7 @@ function update() {
     // s.tilePosition.x += (game.input.speed.x / 2);
 
     paddle.x = game.input.x;
+    paddle.x = canvas.width;
 
     if (paddle.x < 24) {
         paddle.x = 24;
@@ -112,7 +114,7 @@ function releaseBall() {
         ballOnPaddle = false;
         ball.body.velocity.y = -300;
         ball.body.velocity.x = -75;
-        ball.animations.play('spin');
+        //ball.animations.play('spin');
         introText.visible = false;
     }
 
@@ -157,10 +159,10 @@ function ballHitBrick(_ball, _brick) {
 
     //  Are there any bricks left?
     if (bricks.countLiving() == 0) {
-        //  New level starts
+        /*//  New level starts
         score += 10;
         scoreText.text = 'score: ' + score;
-        //introText.text = '- Next Level -';
+        //introText.text = '- Next Level -';*/
 
         //  Let's move the ball back to the paddle
         ballOnPaddle = true;
