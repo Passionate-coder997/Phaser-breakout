@@ -47,7 +47,7 @@ function create() {
 
     for (var y = 0; y < 4; y++) {
         for (var x = 0; x < 10; x++) {
-            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'brick');
+            brick = bricks.create(120 + (x * 36), 100 + (y * 70), 'brick');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
@@ -69,7 +69,6 @@ function create() {
     game.physics.enable(ball, Phaser.Physics.ARCADE);
     ball.body.bounce.set(1);
     ball.anchor.set(0.5);
-    ball.body.velocity.set(150, -150);
     ball.checkWorldBounds = true;
 
     ball.body.collideWorldBounds = true;
