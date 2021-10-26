@@ -26,7 +26,7 @@ function preload() {
     game.load.image('ball', 'img/ball.png');
     game.load.image('brick', 'img/brick.png');
     game.load.audio('hits', 'js/hit.wav');
-    game.load.audio('sad', 'js/cartoon015.mp3);
+    game.load.audio('sad', 'js/cartoon015.mp3');
     game.load.audio('over', 'js/game_over.wav');
 
 }
