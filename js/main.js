@@ -26,6 +26,7 @@ function preload() {
     game.load.image('ball', 'img/ball.png');
     game.load.image('brick', 'img/brick.png');
     game.load.audio('hits', 'js/hit.wav');
+    game.load.audio('sad', 'js/cartoon015.mp3);
     game.load.audio('over', 'js/game_over.wav');
 
 }
@@ -46,7 +47,7 @@ function create() {
 
     for (var y = 0; y < 4; y++) {
         for (var x = 0; x < 12; x++) {
-            brick = bricks.create(120 + (x * 56), 100 + (y * 52), 'brick');
+            brick = bricks.create(120 + (x * 86), 100 + (y * 52), 'brick');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
@@ -120,7 +121,7 @@ function releaseBall() {
 function ballLost() {
 
     lives--;
-    life = game.sound.play('over');
+    life = game.sound.play('sad');
     livesText.text = 'lives: ' + lives;
 
     if (lives === 0) {
