@@ -46,8 +46,8 @@ function create() {
     var brick;
 
     for (var y = 0; y < 4; y++) {
-        for (var x = 0; x < 12; x++) {
-            brick = bricks.create(150 + (x * 36), 100 + (y * 52), 'brick');
+        for (var x = 0; x < 10; x++) {
+            brick = bricks.create(120 + (x * 36), 120 + (y * 52), 'brick');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
@@ -143,11 +143,8 @@ function gameOver() {
     introText.text = 'Game Over!';
     introText.visible = true;
     life = game.sound.play('over');
-    if (game.input.onDown) {
-        introText.visible = false;
-        document.location.reload();
-    }
-
+    introText.visible = false;
+    document.location.reload();
 }
 
 function ballHitBrick(_ball, _brick) {
