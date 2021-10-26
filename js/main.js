@@ -47,7 +47,7 @@ function create() {
 
     for (var y = 0; y < 4; y++) {
         for (var x = 0; x < 10; x++) {
-            brick = bricks.create(120 + (x * 50), 100 + (y * 70), 'brick');
+            brick = bricks.create(120 + (x * 50), 100 + (y * 62), 'brick');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
