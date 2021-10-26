@@ -8,7 +8,7 @@ var ball;
 var paddle;
 var bricks;
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'breakout', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
 
 function preload() {
     // Do all the scaling
@@ -25,15 +25,11 @@ function preload() {
     game.load.image('paddle', 'img/paddle.png');
     game.load.image('ball', 'img/ball.png');
     game.load.image('brick', 'img/brick.png');
-    game.load.audio('hit', 'js/hit.wav');
-    game.load.audio('game_over','js/game_over.wav');
-    game.load.audio('life_lost','js/over.mp3');
 
 }
 
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    this.game.stage.backgroundColor= "#31f0f0";
 
     //  We check bounds collisions against all walls other than the bottom one
     game.physics.arcade.checkCollision.down = false;
@@ -42,18 +38,13 @@ function create() {
     bricks = game.add.group();
     bricks.enableBody = true;
     bricks.physicsBodyType = Phaser.Physics.ARCADE;
-    
-    //initializing audio
-    hit = game.add.audio('hit');
-    game_over = game.add.audio('game_over');
-    life_lost = game.add.audio('life_lost');
 
     //create all bricks
     var brick;
 
-    for (var y = 0; y < 5; y++) {
+    for (var y = 0; y < 4; y++) {
         for (var x = 0; x < 15; x++) {
-            brick = bricks.create(2 + (x * 150), 85 + (y * 50), 'brick');
+            brick = bricks.create(120 + (x * 36), 100 + (y * 52), 'brick');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
@@ -68,13 +59,12 @@ function create() {
     paddle.body.collideWorldBounds = true;
     paddle.anchor.set(0.5, 0.5);
     paddle.body.immovable = true;
-    paddle.checkWorldBounds = true;
 
     //create the ball
-    ball = game.add.sprite(game.world.centerX, paddle.y - 35, 'ball');
+    ball = game.add.sprite(game.world.centerX, paddle.y - 19, 'ball');
     game.physics.enable(ball, Phaser.Physics.ARCADE);
     ball.body.bounce.set(1);
-    ball.anchor.set(0.2);
+    ball.anchor.set(0.5);
     ball.checkWorldBounds = true;
 
     ball.body.collideWorldBounds = true;
@@ -84,9 +74,9 @@ function create() {
 
     ball.events.onOutOfBounds.add(ballLost, this);
 
-    scoreText = game.add.text(32, 30, 'score: 0', { font: "20px Arial", fill: "#000000", align: "left" });
-    livesText = game.add.text(680, 30, 'lives: 3', { font: "20px Arial", fill: "#000000", align: "left" });
-    introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#A9A9A9", align: "center" });
+    scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
+    livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
+    introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
     introText.anchor.setTo(0.5, 0.5);
 
     game.input.onDown.add(releaseBall, this);
@@ -94,7 +84,7 @@ function create() {
 
 function update() {
     //  Fun, but a little sea-sick inducing :) Uncomment if you like!
-     s.tilePosition.x += (game.input.speed.x / 2);
+    // s.tilePosition.x += (game.input.speed.x / 2);
 
     paddle.x = game.input.x;
 
@@ -119,7 +109,7 @@ function releaseBall() {
         ballOnPaddle = false;
         ball.body.velocity.y = -300;
         ball.body.velocity.x = -75;
-        //ball.animations.play('spin');
+        ball.animations.play('spin');
         introText.visible = false;
     }
 
@@ -128,8 +118,6 @@ function releaseBall() {
 function ballLost() {
 
     lives--;
-    life_lost.play();
-
     livesText.text = 'lives: ' + lives;
 
     if (lives === 0) {
@@ -144,43 +132,20 @@ function ballLost() {
 
 }
 
-function restart() {
-    if(game.input.onDown)
-    {
-        score = 0;
-        lives = 3
-        //  Let's move the ball back to the paddle
-        ballOnPaddle = true;
-        ball.body.velocity.set(0);
-        ball.x = paddle.x + 16;
-        ball.y = paddle.y - 16;
-        //ball.animations.stop();
-
-        //  And bring the bricks back from the dead :)
-        bricks.callAll('revive');
-    }
-}
-
 function gameOver() {
 
     ball.body.velocity.setTo(0, 0);
-    game_over.play();
 
-    introText.text = "Game Over!\nClick to restart";
+    introText.text = 'Game Over!';
     introText.visible = true;
-    if(introText.text == "Game Over!\n Click to restart")
-    {
-        restart();
-        location.reload();
-    }
-}
 
+}
 
 function ballHitBrick(_ball, _brick) {
 
     _brick.kill();
+
     score += 10;
-    hit.play();
 
     scoreText.text = 'score: ' + score;
 
