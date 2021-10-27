@@ -131,7 +131,7 @@ function ballLost() {
     } else {
         ballOnPaddle = true;
 
-        ball.reset(paddle.body.x + 16, paddle.y - 16);
+        ball.reset(paddle.body.x + 25, paddle.y - 25);
     }
 
 }
