@@ -18,9 +18,8 @@ function preload() {
         game.scale.pageAlignVertically(true);
         game.scale.setScreenSize(true);
     } else {
-        game.scale.fullScreenScaleMode = Phaser.ScaleManager.USER_SCALE;
-        game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
-        //game.scale.setScreenSize(true);
+        game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     }
 
     game.load.image('paddle', 'img/paddle.png');
@@ -54,8 +53,9 @@ function create() {
         }
     }
 
-    paddle = game.add.sprite(this.world.centerX, 500, 'paddle');
-    paddle.anchor.setTo(0.5, 0.5);
+    paddle = game.add.sprite(game.world.width * 0.5, 580, 'paddle');
+
+    paddle.anchor.setTo(0.5, 1);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
 
@@ -65,7 +65,7 @@ function create() {
     paddle.body.immovable = true;
 
     //create the ball
-    ball = game.add.sprite(paddle.x * 0.5, paddle.y - 20, 'ball');
+    ball = game.add.sprite(paddle.world.width * 0.5, paddle.y - 25, 'ball');
     //ball = game.add.sprite(game.world.centerX, paddle.y - 19, 'ball');
     game.physics.enable(ball, Phaser.Physics.ARCADE);
     ball.body.bounce.set(1);
@@ -76,13 +76,11 @@ function create() {
 
     //We don't want to check for out of worldBound when the ball goes down the screen
     game.physics.arcade.checkCollision.down = false;
-    game.physics.arcade.checkCollision.left = true;
-    game.physics.arcade.checkCollision.left = true;
 
     ball.events.onOutOfBounds.add(ballLost, this);
 
-    scoreText = game.add.text(32, 25, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
-    livesText = game.add.text(690, 25, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
+    scoreText = game.add.text(20, 20, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
+    livesText = game.add.text(720, 20, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
     introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
     introText.anchor.setTo(0.5, 0.5);
 
@@ -119,7 +117,6 @@ function releaseBall() {
         ballOnPaddle = false;
         ball.body.velocity.y = -300;
         ball.body.velocity.x = -75;
-        //ball.animations.play('spin');
         introText.visible = false;
     }
 
@@ -137,8 +134,6 @@ function ballLost() {
         ballOnPaddle = true;
 
         ball.reset(paddle.body.x + 16, paddle.y - 16);
-
-        //ball.animations.stop();
     }
 
 }
