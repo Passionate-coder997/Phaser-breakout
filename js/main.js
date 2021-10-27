@@ -15,11 +15,12 @@ function preload() {
     if (!game.device.desktop) {
         game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
         game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+        game.scale.pageAlignVertically(true);
         game.scale.setScreenSize(true);
     } else {
-        game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        game.scale.setScreenSize(true);
+        game.scale.fullScreenScaleMode = Phaser.ScaleManager.USER_SCALE;
+        game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
+        //game.scale.setScreenSize(true);
     }
 
     game.load.image('paddle', 'img/paddle.png');
@@ -46,14 +47,14 @@ function create() {
     var brick;
 
     for (var y = 0; y < 4; y++) {
-        for (var x = 0; x < 10; x++) {
-            brick = bricks.create(120 + (x * 50), 100 + (y * 62), 'brick');
+        for (var x = 0; x < 6; x++) {
+            brick = bricks.create(50 + (x * 120), 120 + (y * 52), 'brick');
             brick.body.bounce.set(1);
             brick.body.immovable = true;
         }
     }
 
-    paddle = game.add.sprite(400, 500, 'paddle');
+    paddle = game.add.sprite(this.world.centerX, 500, 'paddle');
     paddle.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
@@ -64,7 +65,7 @@ function create() {
     paddle.body.immovable = true;
 
     //create the ball
-    ball = game.add.sprite(paddle.x*0.5, paddle.y - 20, 'ball');
+    ball = game.add.sprite(paddle.x * 0.5, paddle.y - 20, 'ball');
     //ball = game.add.sprite(game.world.centerX, paddle.y - 19, 'ball');
     game.physics.enable(ball, Phaser.Physics.ARCADE);
     ball.body.bounce.set(1);
@@ -76,7 +77,7 @@ function create() {
     //We don't want to check for out of worldBound when the ball goes down the screen
     game.physics.arcade.checkCollision.down = false;
     game.physics.arcade.checkCollision.left = true;
-    game.physics.arcade.checkCollision.right = true;
+    game.physics.arcade.checkCollision.left = true;
 
     ball.events.onOutOfBounds.add(ballLost, this);
 
@@ -163,21 +164,7 @@ function ballHitBrick(_ball, _brick) {
 
     //  Are there any bricks left?
     if (bricks.countLiving() == 0) {
-        /*//  New level starts
-        score += 10;
-        scoreText.text = 'score: ' + score;
-        //introText.text = '- Next Level -';
-
-        //  Let's move the ball back to the paddle
-        ballOnPaddle = true;
-        ball.body.velocity.set(0);
-        ball.x = paddle.x + 16;
-        ball.y = paddle.y - 16;
-        //ball.animations.stop();
-
-        //  And bring the bricks back from the dead :)
-        bricks.callAll('revive');*/
-        winAlert = game.add.text(game.world.centerX, game.world.centerY, 'Congratulations, You won!!', { font: "20px Arial", fill: "#ffffff", align: "centre" });
+        winAlert = game.add.text(game.world.centerX, game.world.centerY, 'Congratulations, You won!!', { font: "20px Arial", fill: "red", align: "centre" });
     }
 
 }
