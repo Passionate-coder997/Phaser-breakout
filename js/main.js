@@ -15,7 +15,6 @@ function preload() {
     if (!game.device.desktop) {
         game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
         game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
-        game.scale.pageAlignVertically(true);
         game.scale.setScreenSize(true);
     } else {
         game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
