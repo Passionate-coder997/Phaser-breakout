@@ -54,14 +54,13 @@ function create() {
     }
 
     paddle = game.add.sprite(game.world.width * 0.5, 580, 'paddle');
-
-    paddle.anchor.setTo(0.5);
+    
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
 
     //create the paddle
     paddle.body.collideWorldBounds = true;
-    paddle.anchor.set(0.5);
+    paddle.anchor.setTo(0.5);
     paddle.body.immovable = true;
 
     //create the ball
