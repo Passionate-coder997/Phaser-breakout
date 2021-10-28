@@ -170,6 +170,7 @@ function ballHitBrick(_ball, _brick) {
 
     //  Are there any bricks left?
     if (bricks.countLiving() == 0) {
+        ball.body.velocity.setTo(0, 0);
         winAlert = game.add.text(game.world.centerX, game.world.centerY, 'Congratulations, You won!!', { font: "20px Arial", fill: "red", align: "centre" });
     }
 
