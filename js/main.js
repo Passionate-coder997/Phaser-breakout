@@ -24,9 +24,12 @@ function preload() {
     game.load.image('paddle', 'img/paddle.png');
     game.load.image('ball', 'img/ball.png');
     game.load.image('brick', 'img/brick.png');
+    btnimg = game.load.image('refresh', 'img/output.png');
     game.load.audio('hits', 'js/hit.wav');
     game.load.audio('sad', 'js/cartoon015.mp3');
     game.load.audio('over', 'js/game_over.wav');
+
+    btnimg.scale = 0.5;
 
 }
 
@@ -52,22 +55,23 @@ function create() {
         }
     }
 
-    paddle = game.add.sprite(game.world.width * 0.5, 580, 'paddle');
-    
+    paddle = game.add.sprite(game.world.centerX, 580, 'paddle');
 
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
 
+    //create refresh button
+    refreshbtn = game.add.button(380, 250, 'refresh', actionOnClick);
+
     //create the paddle
     paddle.body.collideWorldBounds = true;
-    paddle.anchor.setTo(0.5);
+    paddle.anchor.set(0.5, 0.5);
     paddle.body.immovable = true;
 
     //create the ball
-    ball = game.add.sprite(paddle.world.width * 0.5, paddle.y - 25, 'ball');
-    //ball = game.add.sprite(game.world.centerX, paddle.y - 19, 'ball');
+    ball = game.add.sprite(game.world.centerX, paddle.y - 25, 'ball');
     game.physics.enable(ball, Phaser.Physics.ARCADE);
     ball.body.bounce.set(1);
-    ball.anchor.set(0.5);
+    ball.anchor.set(0.5, 0.5);
     ball.checkWorldBounds = true;
 
     ball.body.collideWorldBounds = true;
@@ -81,6 +85,8 @@ function create() {
     livesText = game.add.text(720, 20, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
     introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
     introText.anchor.setTo(0.5, 0.5);
+    refreshbtn.anchor.setTo(0.5, 0.2);
+    refreshbtn.visible = false;
 
     game.input.onDown.add(releaseBall, this);
 }
@@ -116,6 +122,7 @@ function releaseBall() {
         ball.body.velocity.y = -300;
         ball.body.velocity.x = -75;
         introText.visible = false;
+        refreshbtn.visible = false;
     }
 
 }
@@ -131,7 +138,7 @@ function ballLost() {
     } else {
         ballOnPaddle = true;
 
-        ball.reset(paddle.body.x + 25, paddle.y - 25);
+        ball.reset(paddle.body.x + 16, paddle.y - 16);
     }
 
 }
@@ -143,10 +150,14 @@ function gameOver() {
     introText.text = 'Game Over!';
     introText.visible = true;
     life = game.sound.play('over');
-    if (game.input.isDown) {
-        introText.visible = false;
-        document.location.reload();
-    }
+    refreshbtn.visible = true;
+    game.input.onDown.add(actionOnClick, this);
+}
+
+function actionOnClick() {
+    refreshbtn.visible = true;
+    introText.visible = false;
+    document.location.reload();
 }
 
 function ballHitBrick(_ball, _brick) {
@@ -169,16 +180,12 @@ function ballHitPaddle(_ball, _paddle) {
     var diff = 0;
 
     if (_ball.x < _paddle.x) {
-        //  Ball is on the left-hand side of the paddle
         diff = _paddle.x - _ball.x;
         _ball.body.velocity.x = (-10 * diff);
     } else if (ball.x > paddle.x) {
-        //  Ball is on the right-hand side of the paddle
         diff = ball.x - paddle.x;
         _ball.body.velocity.x = (10 * diff);
     } else {
-        //  Ball is perfectly in the middle
-        //  Add a little random X to stop it bouncing straight up!
-        _ball.body.velocity.x = 2 + Math.random() * 8;
+        _ball.body.velocity.x = 2 + Math.random() * 2;
     }
 }
